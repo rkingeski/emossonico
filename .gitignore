@@ -1,4 +1,3 @@
 *.sqlite3
 Chrome*
-uploads/*
 .vscode
