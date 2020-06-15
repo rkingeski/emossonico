@@ -2,8 +2,7 @@
 ini_set('html_errors', false);
 
 try {
-    $db = new PDO('sqlite:audios.sqlite3');
-    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    include('includes/connection.php');
     $db->exec('SELECT * FROM audios');
 } catch (PDOException $ex) {
     header("HTTP/1.0 500 UPLOAD FAIL");

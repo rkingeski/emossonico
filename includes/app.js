@@ -139,14 +139,14 @@ function createDownloadLink(blob) {
 		<div class="col-sm-2">
 			<select id="emocao" name="emocao" class='form-control form-control-sm' required>
 				<option value="" disabled selected hidden>Emoção</option>
-				<option value="Felicidade">Felicidade</option>
-				<option value="Tristeza">Tristeza</option>
-				<option value="Nojo">Nojo</option>
-				<option value="Medo">Medo</option>
-				<option value="Raiva">Raiva</option>
-				<option value="Surpresa">Surpresa</option>
-				<option value="Neutro">Neutro</option>
-				<option value="Outro (Descrever ao lado)">Outro</option>
+				<option value="1">Felicidade</option>
+				<option value="2">Tristeza</option>
+				<option value="3">Nojo</option>
+				<option value="4">Medo</option>
+				<option value="5">Raiva</option>
+				<option value="6">Surpresa</option>
+				<option value="7">Neutro</option>
+				<option value="8">Outro</option>
 			</select>
 		</div>
 		<div class="col">

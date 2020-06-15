@@ -1,15 +1,14 @@
 <?php
 
-$db = new PDO("sqlite:audios.sqlite3");
-$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+include('includes/connection.php');
 
 $sql = <<<SQL
 	CREATE TABLE IF NOT EXISTS audios ( 
 		id 			INTEGER PRIMARY KEY, 
 		autor 		TEXT, 
 		idade 		INTEGER, 
-		sexo 			TEXT, 
-		emocao 		TEXT,
+		sexo 		TEXT, 
+		emocao 		INTEGER,
 		descricao 	TEXT, 
 		filename 	TEXT,
 		ip 			TEXT

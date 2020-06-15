@@ -29,14 +29,14 @@ include('includes/header.php');
 					<div class="col">
 						<select name="emocao" class='form-control form-control-sm'>
 							<option value="" disabled selected hidden>Emoção</option>
-							<option value="='Felicidade'">Felicidade</option>
-							<option value="='Tristeza'">Tristeza</option>
-							<option value="='Nojo'">Nojo</option>
-							<option value="='Medo'">Medo</option>
-							<option value="='Raiva'">Raiva</option>
-							<option value="='Surpresa'">Surpresa</option>
-							<option value="='Neutro'">Neutro</option>
-							<option value="='Outro'">Outro</option>
+							<option value="= 1">Felicidade</option>
+							<option value="= 2">Tristeza</option>
+							<option value="= 3">Nojo</option>
+							<option value="= 4">Medo</option>
+							<option value="= 5">Raiva</option>
+							<option value="= 6">Surpresa</option>
+							<option value="= 7">Neutro</option>
+							<option value="= 8">Outro</option>
 						</select>
 					</div>
 
@@ -64,21 +64,19 @@ include('includes/header.php');
 		}
 
 		try {
-			$db = new PDO('sqlite:audios.sqlite3');
-			$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-			$db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+			include('includes/connection.php');
 			$dados = $db->prepare("SELECT autor, idade, sexo, emocao, descricao, filename FROM audios ".$where);
 			$dados->execute();
-
 			$audios = $dados->fetchAll(PDO::FETCH_ASSOC);
 			foreach($audios as $audio){
 				$autor = $audio['autor'] ?? 'Anônimo';
+				$emocao = ['Felicidade', 'Tristeza', 'Nojo', 'Medo', 'Raiva', 'Surpresa', 'Neutro', 'Outro'][$audio['emocao']-1];
 				echo "<li class='list-group-item d-flex justify-content-between align-items-center'><div>";
 				echo "<audio class='align-middle' controls='true' src='uploads/".$audio['filename']."'></audio>";
 				echo "Gravado por: <b>".$autor."</b> (".$audio['idade']."/".$audio['sexo']."). ";
 				//echo "<i>".$audio['emocao'].":</i> ".$audio['descricao'].".";
 				echo "<span class='text-muted'>".$audio['descricao']."</span></div>";
-				echo "<span class='badge badge-primary badge-pill'>".$audio['emocao']."</span>";
+				echo "<span class='badge badge-primary badge-pill'>".$emocao."</span>";
 				echo "</li>";
 			}
 
