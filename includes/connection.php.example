@@ -3,7 +3,7 @@
 $db = new PDO('sqlite:audios.sqlite3');
 
 //mysql database
-$db = new PDO('mysql:host=localhost;port=3306;dbname=database;charset=utf-8', 'user', 'password');
+$db = new PDO('mysql:host=localhost;port=3306;dbname=database;charset=utf8', 'user', 'password');
 
 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);

@@ -3,6 +3,10 @@ session_start();
 if(!isset($_SESSION['termo'])) //verifica se termo foi assinado
 	header("Location: termo.php");
 
+//proteção CSRF
+if (empty($_SESSION['token']))
+	$_SESSION['token'] = base64_encode(random_bytes(32));
+
 include('includes/header.php');
 ?>
 
@@ -17,6 +21,7 @@ include('includes/header.php');
 	
 		
 		<form action="javascript:;" method='post' name='perfil'>
+			<input type="hidden" name="_token" value="<?php echo $_SESSION['token'] ?>">
 			<div class="form-row">
 				<div class="col-sm-4">
 					<input class="form-control form-control-sm" type="text" name="autor" id="autor"
@@ -53,7 +58,7 @@ include('includes/header.php');
 			</ul>
 		</div>
 
-		<script src="https://cdn.rawgit.com/mattdiamond/Recorderjs/08e7abd9/dist/recorder.js"></script>
+		<script src="includes/recorder.js"></script>
 		<script src="includes/app.js"></script>
 
 	</div>

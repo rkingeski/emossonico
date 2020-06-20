@@ -176,6 +176,7 @@ function createDownloadLink(blob) {
 		let fd=new FormData(form);
 		let perfil = document.perfil;
 		if(perfil.reportValidity()){
+			fd.append("_token", perfil['_token'].value);
 			fd.append("autor", perfil['autor'].value);
 			fd.append("idade", perfil['idade'].value);
 			fd.append("sexo", perfil['sexo'].value);

@@ -2,7 +2,7 @@
 include('includes/header.php');
 ?>
 
-<div class="container mt-4 px-4 col-md-9">
+<div class="container mt-4 px-4 col-lg-10">
 	<ul class="list-group">
 		<li class="list-group-item list-group-item-dark text-center"><b>Banco de Vozes</b></li>
 		<li class="list-group-item">
@@ -50,7 +50,7 @@ include('includes/header.php');
 			</form>
 		</li>
 		<?php
-		//modifica
+
 		if(!empty($_POST)){
 			$_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_NUMBER_INT);
 
@@ -84,21 +84,22 @@ include('includes/header.php');
 			$dados = $db->prepare("SELECT autor, idade, sexo, emocao, descricao, filename FROM audios ".$where);
 			$dados->execute();
 			$audios = $dados->fetchAll(PDO::FETCH_ASSOC);
+
 			foreach($audios as $audio){
 				$autor = $audio['autor'] ?? 'Anônimo';
 				$emocao = ['Felicidade', 'Tristeza', 'Nojo', 'Medo', 'Raiva', 'Surpresa', 'Neutro', 'Outro'][$audio['emocao']-1];
 				echo "<li class='list-group-item d-flex justify-content-between align-items-center'><div>";
 				echo "<audio class='align-middle' controls='true' src='uploads/{$audio['filename']}'></audio>";
-				echo "Gravado por: <b>$autor</b> ({$audio['idade']}/{$audio['sexo']}).";
+				echo "Gravado por: <b>$autor</b> ({$audio['idade']}/{$audio['sexo']}). ";
 				echo "<span class='text-muted'>{$audio['descricao']}</span></div>";
 				echo "<span class='badge badge-primary badge-pill'>$emocao</span>";
 				echo "</li>";
 			}
 
-		} catch (PDOException $ex) {
+		} catch (PDOException $e) {
 			echo "<li class='list-group-item'>";
-			echo "<a href='criar_bd.php'>Acesse para inicializar o banco de dados</a>";
-			echo $ex;
+			echo $e->getMessage();
+			echo "<br><a href='criar_bd.php'>Acesse para inicializar o banco de dados</a>";
 			echo "</li>";
 		}
 

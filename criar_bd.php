@@ -4,7 +4,7 @@ include('includes/connection.php');
 
 $sql = <<<SQL
 	CREATE TABLE IF NOT EXISTS audios ( 
-		id 			INTEGER PRIMARY KEY, 
+		id 			INTEGER PRIMARY KEY /*!40101 AUTO_INCREMENT */, 
 		autor 		TEXT, 
 		idade 		INTEGER, 
 		sexo 		TEXT, 
