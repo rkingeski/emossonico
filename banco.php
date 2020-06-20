@@ -11,32 +11,32 @@ include('includes/header.php');
 					<div class="col">
 						<select name='sexo' class='form-control form-control-sm'>
 							<option value="" disabled selected hidden>Sexo</option>
-							<option value="='M'">Masculino</option>
-							<option value="='F'">Feminino</option>
+							<option value="1">Masculino</option>
+							<option value="2">Feminino</option>
 						</select>
 					</div>
 					<div class="col">
 						<select name="idade" class='form-control form-control-sm'>
 							<option value="" disabled selected hidden>Faixa Etária</option>
-							<option value='< 18'> &lt;18 </option>
-							<option value='BETWEEN 18 AND 29'>18-29</option>
-							<option value='BETWEEN 30 AND 39'>30-39</option>
-							<option value='BETWEEN 48 AND 49'>40-49</option>
-							<option value='BETWEEN 58 AND 59'>50-59</option>
-							<option value='>= 60'> 60+</option>
+							<option value='1'> &lt;18 </option>
+							<option value='2'>18-29</option>
+							<option value='3'>30-39</option>
+							<option value='4'>40-49</option>
+							<option value='5'>50-59</option>
+							<option value='6'> 60+</option>
 						</select>
 					</div>
 					<div class="col">
 						<select name="emocao" class='form-control form-control-sm'>
 							<option value="" disabled selected hidden>Emoção</option>
-							<option value="= 1">Felicidade</option>
-							<option value="= 2">Tristeza</option>
-							<option value="= 3">Nojo</option>
-							<option value="= 4">Medo</option>
-							<option value="= 5">Raiva</option>
-							<option value="= 6">Surpresa</option>
-							<option value="= 7">Neutro</option>
-							<option value="= 8">Outro</option>
+							<option value="1">Felicidade</option>
+							<option value="2">Tristeza</option>
+							<option value="3">Nojo</option>
+							<option value="4">Medo</option>
+							<option value="5">Raiva</option>
+							<option value="6">Surpresa</option>
+							<option value="7">Neutro</option>
+							<option value="8">Outro</option>
 						</select>
 					</div>
 
@@ -50,15 +50,31 @@ include('includes/header.php');
 			</form>
 		</li>
 		<?php
+		//modifica
 		if(!empty($_POST)){
+			$_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_NUMBER_INT);
+
 			echo "<script>window.onload = function() {\n";
-			$where = "WHERE ";
 			foreach($_POST as $filtro => $valor){
-				$where .= $filtro." ".$valor." AND ";
-				echo "\tdocument.filtro.".$filtro.".value = \"".$valor."\";\n";
+				echo "	document.filtro.$filtro.value = '$valor';\n";
 			}
-			$where = substr($where, 0, -4);
 			echo "}\n</script>";
+			$where = "WHERE ";
+			if(isset($_POST['sexo'])){
+				$sexo = ['M', 'F'][$_POST['sexo']-1];
+				$where .= "sexo = '$sexo'";
+				$where .= isset($_POST['idade']) || isset($_POST['emocao']) ? " AND " : "";
+			}
+			if(isset($_POST['idade'])){
+				$idade = ['< 18', 'BETWEEN 18 AND 29', 'BETWEEN 30 AND 39', 
+						  'BETWEEN 40 AND 49', 'BETWEEN 50 AND 59', '>= 60'][$_POST['idade']-1];
+				$where .= "idade $idade";
+				$where .= isset($_POST['emocao']) ? " AND " : "";
+			}
+			if(isset($_POST['emocao'])){
+				$where .= "emocao = ".$_POST['emocao'];
+			}
+
 		} else {
 			$where = "";
 		}
@@ -72,17 +88,17 @@ include('includes/header.php');
 				$autor = $audio['autor'] ?? 'Anônimo';
 				$emocao = ['Felicidade', 'Tristeza', 'Nojo', 'Medo', 'Raiva', 'Surpresa', 'Neutro', 'Outro'][$audio['emocao']-1];
 				echo "<li class='list-group-item d-flex justify-content-between align-items-center'><div>";
-				echo "<audio class='align-middle' controls='true' src='uploads/".$audio['filename']."'></audio>";
-				echo "Gravado por: <b>".$autor."</b> (".$audio['idade']."/".$audio['sexo']."). ";
-				//echo "<i>".$audio['emocao'].":</i> ".$audio['descricao'].".";
-				echo "<span class='text-muted'>".$audio['descricao']."</span></div>";
-				echo "<span class='badge badge-primary badge-pill'>".$emocao."</span>";
+				echo "<audio class='align-middle' controls='true' src='uploads/{$audio['filename']}'></audio>";
+				echo "Gravado por: <b>$autor</b> ({$audio['idade']}/{$audio['sexo']}).";
+				echo "<span class='text-muted'>{$audio['descricao']}</span></div>";
+				echo "<span class='badge badge-primary badge-pill'>$emocao</span>";
 				echo "</li>";
 			}
 
 		} catch (PDOException $ex) {
 			echo "<li class='list-group-item'>";
 			echo "<a href='criar_bd.php'>Acesse para inicializar o banco de dados</a>";
+			echo $ex;
 			echo "</li>";
 		}
 
