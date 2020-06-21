@@ -1,7 +1,7 @@
 <?php 
 session_start();
 if(!isset($_SESSION['termo'])) //verifica se termo foi assinado
-	header("Location: termo.php");
+	header("Location: termo");
 
 //proteção CSRF
 if (empty($_SESSION['token']))
@@ -17,7 +17,7 @@ include('includes/header.php');
 
 		<p>Para fazer as gravações é necessário utilizar um fone de ouvido, para não causar interferência dos áudios
 		do video com o áudio gravado. Preencha algumas informações sobre você, e, se desejar, identifique-se!<br>
-		Ao gravar, você está concorcando com os <a href="termo.php">Termos</a>.</p>
+		Ao gravar, você está concorcando com os <a href="termo">Termos</a>.</p>
 	
 		
 		<form action="javascript:;" method='post' name='perfil'>

@@ -182,7 +182,7 @@ function createDownloadLink(blob) {
 			fd.append("sexo", perfil['sexo'].value);
 			fd.append("audio_data", blob, filename);
 			fd.append("filename", filename+".wav");
-			xhr.open("POST", "upload.php", true);
+			xhr.open("POST", "upload", true);
 			xhr.send(fd);
 		}
  	});

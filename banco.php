@@ -99,7 +99,7 @@ include('includes/header.php');
 		} catch (PDOException $e) {
 			echo "<li class='list-group-item'>";
 			echo $e->getMessage();
-			echo "<br><a href='criar_bd.php'>Acesse para inicializar o banco de dados</a>";
+			echo "<br><a href='criar_bd'>Acesse para inicializar o banco de dados</a>";
 			echo "</li>";
 		}
 

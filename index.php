@@ -7,7 +7,7 @@ include('includes/header.php');
 			<div class="container">
 				<h1 class="display-3">Emossônico</h1>
 				<p>Um Banco de Dados de vozes colaborativo</p>
-				<p><a class="btn btn-primary btn-lg" href="gravar.php" role="button">Começar</a></p>
+				<p><a class="btn btn-primary btn-lg" href="gravar" role="button">Começar</a></p>
 			</div>
 		</div>
 	</div>

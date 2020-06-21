@@ -55,13 +55,13 @@
 					  <a class="nav-link" href="/">Página Inicial</a>
 					</li>
 					<li class="nav-item">
-					  <a class="nav-link" href="sobre.php">Sobre</a>
+					  <a class="nav-link" href="sobre">Sobre</a>
 					</li>
 					<li class="nav-item">
-					  <a class="nav-link" href="gravar.php" >Gravar</a>
+					  <a class="nav-link" href="gravar" >Gravar</a>
 					</li>
 					<li class="nav-item">
-					  <a class="nav-link" href="banco.php" >Banco de Vozes</a>
+					  <a class="nav-link" href="banco" >Banco de Vozes</a>
 					</li>
 				  </ul>
 				</div>

@@ -3,10 +3,10 @@ session_start();
 if(isset($_POST['a'])){
 	if($_POST['a'] == 1 ){
 		$_SESSION['termo']=1;
-		header("Location: gravar.php");
+		header("Location: gravar");
 	} elseif ($_POST['a'] == 0) {
 		$_SESSION['termo']=NULL;
-		header("Location: obrigado.php"); //redirection para pagina agradecendo?
+		header("Location: obrigado"); //redirection para pagina agradecendo?
 	}
 }
 

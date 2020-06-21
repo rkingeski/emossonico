@@ -17,4 +17,4 @@ SQL;
 
 $db->exec($sql);
 
-header("Location: banco.php");
+header("Location: banco");
