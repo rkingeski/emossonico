@@ -6,8 +6,9 @@
 		<title>Emossônico</title>
 		
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta name="description" content="" />
-		<meta name="keywords" content="" />
+		<meta name="description" content="Um Banco de Dados de vozes colaborativo onde qualquer pessoa pode acessar e gravar seus áudios." />
+		<meta name="keywords" content="emossônico, emossonico, voz, emoções, banco de dados de voz, banco de dados, banco de dados em portuguÊs, banco de dados de voz com emoções, banco de dados de vozes, banco de dados de vozes com emoções" />
+		<meta name="robots" content="index, follow">
 
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" 
 			integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
